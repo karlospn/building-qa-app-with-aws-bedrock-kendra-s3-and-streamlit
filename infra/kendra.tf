@@ -14,7 +14,7 @@ resource "aws_kendra_data_source" "kendra_docs_s3_connector" {
   name     = "s3-docs-connector"
   type     = "S3"
   role_arn = aws_iam_role.kendra_role.arn
-  schedule = "cron(0 */5 * ? * *)"
+  schedule = "cron(0/5 * * * ? *)"
 
   configuration {
     s3_configuration {
