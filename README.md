@@ -18,11 +18,10 @@ It uses the following technologies:
 
 # **Content**
 
-This repository contains the following application.
+This repository contains the following application:
+- A ``Streamlit`` app,  which allow us to query the data stored in AWS Kendra using one of the available AWS Bedrock LLM models.
 
 ![app-diagram](https://raw.githubusercontent.com/karlospn/building-qa-app-with-aws-bedrock-kendra-s3-and-streamlit/main/docs/app-interaction-diagram.png)
-
-- A ``Streamlit`` app allow us to query the data stored in Kendra using a of the AWS Bedrock LLM models available.
 
 # **Jupyter notebooks**
 
@@ -55,11 +54,10 @@ To use this application, you must have access to both components.
 
 ## **boto3 credentials**
 
-- Within the app, ``boto3`` retrieves AWS credentials from the ``default`` profile of the AWS config file. Feel free to adjust this configuration to align with your preferences, whether that involves utilizing environment variables, passing credentials as parameters, or employing other suitable methods.
+- Within the app, ``boto3`` retrieves the AWS credentials from the ``default`` profile of the AWS config file. Feel free to adjust this configuration to align it with your preferences, whether that involves utilizing environment variables, passing credentials as parameters, or employing other suitable methods.
 
 For an overview of the multiples approaches for configuring ``boto3`` credentials, go to the following link:
 - https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html
-
 
 # **How to run the app**
 
