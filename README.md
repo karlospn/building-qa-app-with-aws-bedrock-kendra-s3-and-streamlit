@@ -49,13 +49,13 @@ There are a few prerequisites that you should be aware of before attempting to r
 
 ![preview](https://raw.githubusercontent.com/karlospn/building-qa-app-with-aws-bedrock-kendra-s3-and-streamlit/main/docs/rag-aws-bedrock-preview.png)
 
-- Once admitted to the preview, you will have access exclusively to the Amazon Titan LLM. To utilize any of the third-party LLMs (Anthropic and AI21 Labs LLM models), you must register for access separately.
+- Once admitted to the preview, you will have access only to the Amazon Titan LLM. To utilize any of the third-party LLMs (Anthropic and AI21 Labs LLM models), you must register for access separately.
 
 To use this application, you must have access to both components. 
 
 ## **boto3 credentials**
 
-- Within the app, ``boto3`` retrieves AWS credentials from the ``default`` profile from the AWS config file. Feel free to adjust this configuration to align with your preferences, whether that involves utilizing environment variables, passing credentials as parameters, or employing other suitable methods.
+- Within the app, ``boto3`` retrieves AWS credentials from the ``default`` profile of the AWS config file. Feel free to adjust this configuration to align with your preferences, whether that involves utilizing environment variables, passing credentials as parameters, or employing other suitable methods.
 
 For an overview of the multiples approaches for configuring ``boto3`` credentials, go to the following link:
 - https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html
