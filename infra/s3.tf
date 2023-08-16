@@ -3,7 +3,7 @@ resource "aws_s3_bucket" "s3_docs" {
   bucket = var.s3_bucket_name
 }
 
-# Upload file docs to s3
+# Upload private docs to s3
 resource "aws_s3_object" "docs" {
   bucket = var.s3_bucket_name
   key    = "NET-Microservices-Architecture-for-Containerized-NET-Applications"

@@ -1,4 +1,4 @@
-# IAM role for Kendra
+# Create IAM role for Kendra
 resource "aws_iam_role" "kendra_role" {
   name = "kendra-role"
 
@@ -18,7 +18,7 @@ resource "aws_iam_role" "kendra_role" {
 EOF
 }
 
-# IAM policy for enabling Kendra to access CloudWatch Logs
+# Create IAM policy for enabling Kendra to access CloudWatch Logs
 resource "aws_iam_policy" "kendra_cwl_access_policy" {
   name        = "kendra-cwl-access-policy"
   path        = "/"
@@ -73,7 +73,7 @@ EOF
 }
 
 
-# IAM policy for enabling Kendra to access and index S3
+# Create IAM policy for enabling Kendra to access and index S3
 resource "aws_iam_policy" "kendra_s3_access_policy" {
   name        = "iam-kendra-access-s3-access-policy"
   path        = "/"
@@ -114,12 +114,13 @@ resource "aws_iam_policy" "kendra_s3_access_policy" {
 EOF
 }
 
-
+# Add policy to role
 resource "aws_iam_role_policy_attachment" "kendra_access_cwl_policy_attachment" {
   role       = aws_iam_role.kendra_role.name
   policy_arn = aws_iam_policy.kendra_cwl_access_policy.arn
 }
 
+# Add policy to role
 resource "aws_iam_role_policy_attachment" "kendra_access_s3_policy_attachment" {
   role       = aws_iam_role.kendra_role.name
   policy_arn = aws_iam_policy.kendra_s3_access_policy.arn

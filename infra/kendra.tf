@@ -1,3 +1,4 @@
+# Create Kendra Index
 resource "aws_kendra_index" "kendra_docs_index" {
   name        =  var.kendra_index_name
   edition     = var.kendra_index_edition
@@ -9,6 +10,7 @@ resource "aws_kendra_index" "kendra_docs_index" {
   ]
 }
 
+# Create Kendra Index S3 connector
 resource "aws_kendra_data_source" "kendra_docs_s3_connector" {
   index_id = aws_kendra_index.kendra_docs_index.id
   name     = "s3-docs-connector"
