@@ -1,6 +1,6 @@
 # **Introduction**
 
-This repository contains a practical example about how to build a Q&A app (powered by a LLM model) capable of answering questions related to your private documents in just a couple of hours.
+This repository contains a practical example about how to build a Q&A app capable of answering questions related to your private documents using the GenAI AWS services.
 
 > Previously, I built a Q&A app using Azure OpenAI GPT-4 and Pinecone _(you can find it in [here](https://github.com/karlospn/building-qa-app-with-openai-pinecone-and-streamlit))_.   
 > In this repository I will built exactly the same app but using only AWS services (+ Streamlit for the UI).
@@ -9,7 +9,7 @@ To be more precise, the app has the following architecture:
 
 ![aws-architecture-diagram](https://raw.githubusercontent.com/karlospn/building-qa-app-with-aws-bedrock-kendra-s3-and-streamlit/main/docs/aws-architecture-diagram.png)
 
-It uses the following technologies:
+And it uses the following technologies:
 
 - [AWS Bedrock](https://aws.amazon.com/bedrock)
 - [AWS Kendra](https://aws.amazon.com/kendra)
@@ -18,10 +18,21 @@ It uses the following technologies:
 
 # **Content**
 
-This repository contains the following application:
+This repository contains the following app:
 - A ``Streamlit`` app,  which allow us to query the data stored in AWS Kendra using one of the available AWS Bedrock LLM models.
 
 ![app-diagram](https://raw.githubusercontent.com/karlospn/building-qa-app-with-aws-bedrock-kendra-s3-and-streamlit/main/docs/app-interaction-diagram.png)
+
+### **How the Q&A app works**
+
+- The private documents are being stored in an s3 bucket.
+
+- The Kendra Index is configured to use an s3 connector. The Index checks the s3 bucket every N minutes for new content. If new content is found in the bucket, it gets automatically parsed and stored into Kendra database.   
+
+- When a user runs a query through the ``Streamlit`` app, the app follows these steps:
+    - Retrieve the relevant information for the given query from Kendra. 
+    - Assembles the prompt. 
+    - Sends the prompt to one of the available Bedrock LLM and receives the answer that comes back.
 
 # **Jupyter notebooks**
 
@@ -44,17 +55,18 @@ These Terraform files will create the following resources:
 There are a few prerequisites that you should be aware of before attempting to run the application.
 
 ## **AWS Bedrock**
-- As of today (08/09/2023), AWS Bedrock is still on preview. To access it, you'll need to sign up for the preview.
+- As of today (08/20/2023), AWS Bedrock is still on preview. To access it, you'll need to sign up for the preview.
 
 ![preview](https://raw.githubusercontent.com/karlospn/building-qa-app-with-aws-bedrock-kendra-s3-and-streamlit/main/docs/rag-aws-bedrock-preview.png)
 
 - Once admitted to the preview, you will have access only to the Amazon Titan LLM. To utilize any of the third-party LLMs (Anthropic and AI21 Labs LLM models), you must register for access separately.
 
-To use this application, you must have access to both components. 
+To fully use this application, you must have access to the AWS Bedrock third-paty LLMs.
 
 ## **boto3 credentials**
 
-- Within the app, ``boto3`` retrieves the AWS credentials from the ``default`` profile of the AWS config file. Feel free to adjust this configuration to align it with your preferences, whether that involves utilizing environment variables, passing credentials as parameters, or employing other suitable methods.
+- Within the app, ``boto3`` is setup to retrieve the AWS credentials from the ``default`` profile of the AWS config file on your local machine.    
+Feel free to adjust this configuration to align it with your preferences, whether that involves utilizing environment variables, passing credentials as parameters, or employing other suitable methods.
 
 For an overview of the multiples approaches for configuring ``boto3`` credentials, go to the following link:
 - https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html
