@@ -129,3 +129,10 @@ docker run -p 5050:5050 \
 # **Output**
 
 ![output](https://raw.githubusercontent.com/karlospn/building-qa-app-with-aws-bedrock-kendra-s3-and-streamlit/main/docs/rag-aws-output-1.png)
+
+# **Changelog**
+
+### **10/02/2023**
+- Updated ``app.py`` to make it compatible with the latest Bedrock changes.
+- Updated Jupyter Notebooks to make them compatible with the latest Bedrock changes.
+- Removed ``boto3`` and ``botocore3`` wheel files. A ``boto3`` compatible with Bedrock is finally publicly available.
