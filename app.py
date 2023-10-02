@@ -36,7 +36,7 @@ query = st.text_input("What would you like to know?")
 
 max_tokens = st.number_input('Max Tokens', value=1000)
 temperature= st.number_input(label="Temperature",step=.1,format="%.2f", value=0.7)
-llm_model = st.selectbox("Select LLM model", ["Anthropic Claude V2", "Amazon Titan Text Express v1", "Ai21 Labs Jurassic-2 Ultra"])
+llm_model = st.selectbox("Select LLM", ["Anthropic Claude V2", "Amazon Titan Text Express v1", "Ai21 Labs Jurassic-2 Ultra"])
 
 
 if st.button("Search"):
