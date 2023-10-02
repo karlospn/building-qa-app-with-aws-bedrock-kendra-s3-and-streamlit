@@ -36,7 +36,7 @@ query = st.text_input("What would you like to know?")
 
 max_tokens = st.number_input('Max Tokens', value=1000)
 temperature= st.number_input(label="Temperature",step=.1,format="%.2f", value=0.7)
-llm_model = st.selectbox("Select LLM model", ["Anthropic Claude V2", "Amazon Titan", "Ai21Labs J2 Grande Instruct"])
+llm_model = st.selectbox("Select LLM model", ["Anthropic Claude V2", "Amazon Titan Text Express v1", "Ai21 Labs Jurassic-2 Ultra"])
 
 
 if st.button("Search"):
@@ -45,7 +45,7 @@ if st.button("Search"):
             
             retriever = get_kendra_doc_retriever()  
 
-            bedrock_client = boto3.client("bedrock", bedrock_region)
+            bedrock_client = boto3.client("bedrock-runtime", bedrock_region)
             llm = Bedrock(model_id="anthropic.claude-v2", region_name=bedrock_region, 
                         client=bedrock_client, 
                         model_kwargs={"max_tokens_to_sample": max_tokens, "temperature": temperature})
@@ -55,11 +55,11 @@ if st.button("Search"):
             st.markdown("### Answer:")
             st.write(response['result'])
 
-        if llm_model == 'Amazon Titan':
+        if llm_model == 'Amazon Titan Text Express v1':
             retriever = get_kendra_doc_retriever()       
             
-            bedrock_client = boto3.client("bedrock", bedrock_region)
-            llm = Bedrock(model_id="amazon.titan-tg1-large", region_name=bedrock_region, 
+            bedrock_client = boto3.client("bedrock-runtime", bedrock_region)
+            llm = Bedrock(model_id="amazon.titan-text-express-v1", region_name=bedrock_region, 
                         client=bedrock_client, 
                         model_kwargs={"maxTokenCount": max_tokens, "temperature": temperature})
 
@@ -68,12 +68,12 @@ if st.button("Search"):
             st.markdown("### Answer:")
             st.write(response['result'])
 
-        if llm_model == 'Ai21Labs J2 Grande Instruct':
+        if llm_model == 'Ai21 Labs Jurassic-2 Ultra':
             
             retriever = get_kendra_doc_retriever()           
             
-            bedrock_client = boto3.client("bedrock", bedrock_region)
-            llm = Bedrock(model_id="ai21.j2-grande-instruct", region_name=bedrock_region, 
+            bedrock_client = boto3.client("bedrock-runtime", bedrock_region)
+            llm = Bedrock(model_id="ai21.j2-ultra-v1", region_name=bedrock_region, 
                         client=bedrock_client, 
                         model_kwargs={"maxTokens": max_tokens, "temperature": temperature})
 
