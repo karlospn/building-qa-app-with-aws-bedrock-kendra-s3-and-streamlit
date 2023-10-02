@@ -49,19 +49,22 @@ These Terraform files will create the following resources:
 - A Kendra index with an s3 connector.
 - An IAM role with the required permissions to make everything work.
 
-
 # **Prerequisites**
 
 There are a few prerequisites that you should be aware of before attempting to run the application.
 
-## **AWS Bedrock**
-- As of today (08/20/2023), AWS Bedrock is still on preview. To access it, you'll need to sign up for the preview.
+## **AWS Bedrock third-party LLMs**
 
-![preview](https://raw.githubusercontent.com/karlospn/building-qa-app-with-aws-bedrock-kendra-s3-and-streamlit/main/docs/rag-aws-bedrock-preview.png)
+- By default, in Bedrock you will have access only to the Amazon Titan LLM. To utilize any of the third-party LLMs (Anthropic and AI21 Labs LLM models), you must register for access separately.
 
-- Once admitted to the preview, you will have access only to the Amazon Titan LLM. To utilize any of the third-party LLMs (Anthropic and AI21 Labs LLM models), you must register for access separately.
+![third-party-llm-access](https://raw.githubusercontent.com/karlospn/building-qa-app-with-aws-bedrock-kendra-s3-and-streamlit/main/docs/rag-aws-bedrock-third-party-llm-access.png)
 
-To fully use this application, you must have access to the AWS Bedrock third-paty LLMs.
+In the "Model Access" section, you have an overview of which LLMs you have access to and which ones you do not.
+
+![third-party-llm-access-overview](https://raw.githubusercontent.com/karlospn/building-qa-app-with-aws-bedrock-kendra-s3-and-streamlit/main/docs/aws-third-party-model-access.png)
+
+To fully use this application, you **must have access to every AWS Bedrock third-paty LLMs**.
+
 
 ## **boto3 credentials**
 
